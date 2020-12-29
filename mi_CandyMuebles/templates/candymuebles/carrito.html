@@ -1,0 +1,157 @@
+{% extends "candymuebles/base.html" %}
+
+{% block content %}
+<section class="mbr-section content4 cid-shTmyej2z0" id="content4-x">
+    <div class="container">
+        <div class="row">
+            <!--Titles-->
+            <div class="title pb-5 col-12">
+                <h2 class="align-left mbr-fonts-style m-0 display-1">CARRITO</h2>
+                <div class="mbr-section-btn align-left"><a class="btn btn-secondary display-4" href="../realizar_pedido/">
+                        <span class="mbri-shopping-cart mbr-iconfont mbr-iconfont-btn"></span>TERMINAR COMPRA</a></div>
+            </div>
+            <!--Card-1-->
+            {% for c in productos_en_carrito %}
+            <div class="card px-3 col-12">
+                <div class="card-wrapper media-container-row media-container-row">
+                    <div class="card-box">
+                        <form class="mbr-form form-with-style" >
+                            <div class="top-line pb-3">
+                                <!-- <h4 class="card-title mbr-fonts-style display-5">
+                                    <a class="text-secondary"><strong>{{c.producto_idproducto.nombre}} - Cantidad:
+                                           </strong></a> </h4>
+                                    <p class="mbr-text cost mbr-fonts-style m-0 display-5"><strong>$ {{c.subtotal}}
+                                    <input type="hidden" name="_token" id="csrf-token" value="{{ csrf_token }}"  />
+                                    <input type="number" min="1" max="99999" oninput="handleValueChange(this,'{{forloop.counter}}')" name="cantidad" value="{{c.cantidad}}">
+                                    </strong></p> -->
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img src="{{c.producto_idproducto.foto.url}}" style="object-fit: cover; object-position: center; max-width: 100px;">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <form id="sendsubmit" action="/add_carrito/" method="POST" class="mbr-form form-with-style" >
+                                           {% csrf_token %}
+                                            <h4 class="card-title mbr-fonts-style display-5">
+                                                <strong >
+                                                     PRODUCTO: {{c.producto_idproducto.nombre}} 
+                                                </strong>
+                                            </h4>
+                                            <input type="hidden" name="_token" id="csrf-token" value="{{ csrf_token }}"  />
+                                            <h4 class="card-title mbr-fonts-style display-5">CANTIDAD:
+                                                <input type="number" min="1" max="99999" onkeyup="handleValueChange(this,'{{forloop.counter}}')" name="cantidad" id="cantidad" value="{{c.cantidad}}">
+                                                <input type="hidden" id="id_producto{{forloop.counter}}" value="{{c.producto_idproducto.idproducto}}">  
+                                                <input type="hidden" id="fec_ini" value="{{c.fecha_ini}}">  
+                                                <input type="hidden" id="fec_fin" value="{{c.fecha_fin}}">  
+                                                <!-- <input type="hidden" name="flagnewcant" value="1"> -->
+                                            </h4>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <h4 class="card-title mbr-fonts-style display-5">
+                                               
+                                            <strong >
+                                                <label id="subtotal{{forloop.counter}}"> ${{c.subtotal}} </label>
+                                            </strong>
+                                       
+                                     </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="bottom-line">
+                            <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
+                                {{c.producto_idproducto.descripcion}}
+                                <br>
+                            <form action='../del_carrito/' method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{alerta}}
+                                <input type="hidden" name="idCarritoeliminar" value={{c.idcarritohasproductos}}>
+                                <button type="submit"
+                                    style="align-content: center;background-color: transparent; border: none; padding: 0px; color: #f06292;">&times;
+                                    Eliminar</button>
+                            </form>
+                            {% comment %} <a href="http://www.sbpymes.com" class="text-secondary">Eliminar</a></p>
+                            {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="mbr-section content4 cid-shTmyej2z0" id="content4-x">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="card px-3 col-12">
+                <div class="card-wrapper media-container-row media-container-row">
+                    <div class="card-box">
+                        <div class="top-line pb-3">
+                            <h4 class="card-title mbr-fonts-style display-2">TOTAL</h4>
+                            <p class="mbr-text cost mbr-fonts-style m-0 display-2"
+                                style="font-size: 35px; text-align: right;"><strong id="total">$&nbsp;{{carrito.total}}
+                                    +Delivery&nbsp;</strong></p>
+                        </div>
+                        <div class="bottom-line">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="media-container-row">
+            <div class="col-12 col-md-8">
+                <div class="mbr-section-btn align-center">
+                    <a class="btn btn-secondary display-4" href="../realizar_pedido/"><span
+                            class="mbri-shopping-cart mbr-iconfont mbr-iconfont-btn"></span>TERMINAR COMPRA</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+ 
+{% block script %}
+<script type="text/javascript">    
+    $( document ).ready(function() {
+        
+    });
+ 
+    function handleValueChange(Icant,index){
+        let cantidad = $(Icant).val();
+        if(cantidad == ""){
+           cantidad = 0;
+           $(Icant).val(0);
+        }
+        let producto = $('#id_producto'+index).val();
+        let fecha_ini = $('#fec_ini').val();
+        let fecha_fin = $('#fec_fin').val();
+        console.log(producto)
+        let csrftoken = $('#csrf-token').val();
+
+        $.ajax({
+            type: 'POST',
+            url: "../add_carrito/",
+            data : { 
+                'cantidad':cantidad,
+                'idpro':producto,
+                'flagnewcant':1
+            },
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            success : function(data) {
+                // alert(data)
+                console.log(data);
+                $('#subtotal'+index).text('$'+new Intl.NumberFormat(["ban", "id"]).format(data.subtotal));
+                $('#total').text('$ '+new Intl.NumberFormat(["ban", "id"]).format(data.total)+' +Delivery');
+            }
+        })
+    }
+
+ </script>
+{% endblock %}
+
+

@@ -1,0 +1,281 @@
+{% extends "candymuebles/base.html" %}
+
+{% block content %}
+<section class="mbr-section content4 cid-shTmyej2z0" id="content4-x">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="col-md-10 col-lg-8 block-content">
+                <div>
+                    <div class="dragArea form-row">
+                        <!-- <div class="container">
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4"> 
+                                    <a class="btn btn-sm btn-danger" href="/realizar_pedido_factura" style="float: right;">
+                                        ¿Necesita Factura?
+                                    </a>
+                                </div>
+                            </div>
+                        </div> -->
+                        {% if objAlertClie.flagAlertCliente == True %}
+                        <div class="container">
+                            <div class="row" style="background-color: #bb3636 !important;padding: 15px;
+                            margin-bottom: 20px;
+                            margin-top: 20px;
+                            border: 1px solid transparent;
+                            border-radius: 3px;" >
+                                <div class="col-md-12 "> 
+                                        <div class="col-md-12" style="color:white;font-size: x-large;">
+                                            <span class="mbri-info"></span>
+                                            <message>Ups Tenemos una Restricción</message> 
+                                            <br>
+                                            <!-- <h5 style="font-family: Arial Narrow;padding-left: 30px;padding-bottom: 20px;" >su pedido es de {{ a.cantidadpedido }} unidades pero solo contamos con {{ a.objtemp.stock }}. </h5> -->
+                                            <h5 style="font-family: Arial Narrow;padding-left: 30px;padding-bottom: 20px;" > Estimado <b>{{ NomCli }}</b> ,por favor contectese con el Administrador de la Web, Gracias. </h5>
+                                        </div> 
+                                        <a class="btn btn-sm btn-white display-4" href="../carrito">
+                                            <span class="mbri-logout mbr-iconfont mbr-iconfont-btn"> 
+                                            </span>
+                                            Volver al Carrito
+                                        </a> 
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if objalert.flagAlert == True %}
+                        <div class="container">
+                            <div class="row" style="background-color: #E58353 !important;padding: 15px;
+                            margin-bottom: 20px;
+                            margin-top: 20px;
+                            border: 1px solid transparent;
+                            border-radius: 3px;" >
+                                <div class="col-md-12 "> 
+                                        {% for a in objalert.listAlert %}
+                                            {% if a.status == False %}
+                                                <div class="col-md-12" style="color:white;font-size: x-large;">
+                                                    <span class="mbri-info"></span>
+                                                    <message>No contamos con el stock suficiente para <b> {{ a.producto }} </b></message> 
+                                                    <br>
+                                                    <!-- <h5 style="font-family: Arial Narrow;padding-left: 30px;padding-bottom: 20px;" >su pedido es de {{ a.cantidadpedido }} unidades pero solo contamos con {{ a.objtemp.stock }}. </h5> -->
+                                                    <h5 style="font-family: Arial Narrow;padding-left: 30px;padding-bottom: 20px;" >su pedido es de {{ a.cantidad }} unidades pero solo contamos con {{ a.stockDisponible }}. </h5>
+                                                </div> 
+                                            {% endif %}
+                                        {% endfor %}
+                                        <a class="btn btn-sm btn-white display-4" href="../carrito">
+                                            <span class="mbri-logout mbr-iconfont mbr-iconfont-btn"> 
+                                            </span>
+                                            Volver al Carrito
+                                        </a> 
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="col-md-12">
+                            <h2 class="mbr-fonts-style mbr-fonts-style mb-4 display-2">Realizar tu pedido (Boleta)</h2>
+                        </div>
+                        <div class="col-md-12 input-group-btn mt-2">
+                            <form action='../realizar_pedido2/' method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="hidden" name="_token" id="csrf-token" value="{{ csrf_token }}"  />
+                                <div data-for="name" class="col-md-12 form-group">
+                                    <label for="nombre" class="display-7">Selecciona el Tipo de Documento</label>
+                                    <select id="tipdoc" class="form-control input display-7 form-group"  onchange="EventoKey()" required="required" name="tipodocumentoCli">
+                                        <option value="1" > DNI </option>
+                                        <option value="2" > RUC </option>
+                                    </select>
+                                </div>
+                                
+                                <div data-for="name" class="col-md-12  form-group">
+                                    <label for="nombre" class="display-7">Ingresa el Tipo de Documento</label>
+                                    <input type="text" id="nro" name="nrodocumento" placeholder="Nro Documento"  data-form-field="Name" autocomplete="off" class="form-control input display-7" required="required" onkeyup="EventoKey()" >
+                                </div>
+                                <div data-for="name" class="col-md-12  form-group">
+                                    <label for="nombre" class="display-7">Ingresa Nombre o Razon Social</label>
+                                    <input type="text" id="nom" name="nombre" placeholder="Nombre" data-form-field="Name"  autocomplete="off"  class="form-control input display-7" required="required"  >
+                                </div>
+                                <div data-for="email" class="col-md-12  form-group">
+                                    <label for="nombre" class="display-7">Ingresa Email</label>
+                                    <input type="text" id="ema" name="email" placeholder="Email" data-form-field="Email"  autocomplete="off" class="form-control input display-7" required="required"  >
+                                </div>
+                                <div data-for="email" class="col-md-12  form-group">
+                                    <label for="nombre" class="display-7">Ingresa Telefono</label>
+                                    <input type="text" id="telef" name="telefono" placeholder="Telefono" data-form-field="Telefono"  autocomplete="off" class="form-control input display-7" required="required"  >
+                                </div>
+                                <div data-for="email" class="col-md-12  form-group">
+                                    <label for="nombre" class="display-7">Ingresa Dirección Domicilio</label>
+                                    <input type="text" id="dirdom" name="direcciondomicilio" class="form-control display-7 form-group"  autocomplete="off" placeholder="Direccion Domicilio" required="required" id="id_direccion">
+                                </div>
+                                <div data-for="name" class="col-md-12  form-group">
+                                    <label for="nombre" class="display-7">Selecciona el Evento</label>
+                                    <select id="tipeve" class="form-control input display-7 form-group" required="required" name="tipoevento">
+                                        {% for e in tipoeventos %}
+                                           <option value="{{e.idTipodeEvento}} " > {{e.nombre}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div data-for="email" class="col-md-12  form-group">
+                                    <label for="nombre" class="display-7">Ingresa dirección de Evento</label>
+                                    <input id="direve" type="text" name="direccionevento" class="form-control display-7 form-group" value="{{cliente.direccion}}" autocomplete="off" placeholder="Direccion Evento" required="" id="id_direccion">
+                                </div>
+                                <div data-for="email" class="col-md-12  form-group">
+                                    <label for="nombre" class="display-7">Ingresa la Comuna</label>
+                                    <input id="comuna" type="text" name="comuna" class="form-control display-7 form-group" value="{{cliente.comuna}}" autocomplete="off" placeholder="Comuna" required="" id="id_comuna">
+                                </div>
+                                <div data-for="email" class="col-md-12  form-group">
+                                    <label for="nombre" class="display-7">Ingresa la ciudad</label>
+                                    <input id="ciudad" type="text" name="ciudad" class="form-control display-7 form-group" value="{{cliente.ciudad}}" autocomplete="off" placeholder="Ciudad" required="" id="id_ciudad">
+                                </div>
+                                <div data-for="email" class="col-md-12  form-group">
+                                    <label for="nombre" class="display-7">Ingresa el Delivery</label>
+                                    <select id="delive" class="form-control input display-7 form-group" required="required" name="delivery" >
+                                        {% for c in deliverys %}
+                                           <option value="{{c.iddelivery}} " > {{c.nombre}} - {{c.precio}}</option>
+                                        {% endfor %}
+                                   </select>
+                                </div>  
+                                <div data-for="email" class="col-md-12  form-group">
+                                    <label for="nombre" class="display-7">Descuento Con Código Referido</label>
+                                    <input type="text" name="desctcodigo" class="form-control display-7 form-group" autocomplete="off" placeholder="Ingrese Código" onkeyup="validateCodigoDescuento()" id="desctcodigo">
+                                </div>
+                                <div hidden id="divdescut" data-for="email" class="col-md-12  form-group">
+                                    <div class="card" style="width: 20rem;background-color: rgb(63, 100, 170);">
+                                        <div class="card-body">
+                                          <h2 style="color: white;" class="card-title"><label id="textDescuento" ></label></h2>
+                                          <p style="color: white;" class="card-text">que se le aplicará al Total.</p>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div hidden id="divalert" data-for="email" class="col-md-12  form-group">
+                                    <div class="card" style="width: 20rem;background-color: rgb(189, 88, 88);">
+                                        <div class="card-body">
+                                          <h2 style="color: white;" class="card-title">Código no disponible</h2>
+                                          <p style="color: white;" class="card-text">El código se encuentra inactivo o ya se encuentra fuera de fecha</p>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="col-md-12  form-group" data-for="message">
+                                    <label for="nombre" class="display-7">Ingresa el Tipo de Documento</label>
+                                    <textarea id="notas" type="textarea" name="message" placeholder="Notas" autocomplete="off" data-form-field="Message" class="form-control input display-7"></textarea>
+                                </div>
+                                <div class="col-md-12 input-group-btn mt-2">
+                                    <button type="submit" class="btn btn-form btn-bgr btn-success display-4">Pagar</button>
+                                    <!-- <button class="btn btn-form btn-bgr btn-success display-4" onclick="GuardarPedido()">Pagar</button> -->
+                                </div> 
+                            </form>
+                         </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script>
+
+    function EventoKey(){
+    
+        let doc = $('#nro').val();
+        let dniruc = $('#tipdoc').val();
+    
+        if (doc != ""){
+            ConsultaDocumento(doc,dniruc);
+        }
+    
+    }
+    
+    function ConsultaDocumento(doc,dniruc){
+        let csrftoken = $('#csrf-token').val();
+        $.ajax({
+                    type: 'POST',
+                    url: "/busquedacliente/",
+                    data : { 
+                        'nrodocumento':doc,
+                        'tipodoc': dniruc,
+                    },
+                    headers: {
+                        'X-CSRFToken': csrftoken },
+                    dataType: 'json',
+                }).done(function (data){
+                    console.log(data.namecli)
+                    $('#nom').val(data.namecli);
+                    $('#ema').val(data.emailcli);
+                })
+    }
+  
+    function validateCodigoDescuento(){
+        let desctcodigo = $('#desctcodigo').val();
+        $.ajax({
+                    type: 'GET',
+                    url: "/ValidateCodigoDescuento/",
+                    data : { 
+                        'desctcodigo':desctcodigo
+                    },
+                    dataType: 'json',
+                }).done(function (data){
+                    console.log(data);
+                    if (data.descuento != 0){
+                        $('#divalert').prop('hidden',true);
+                        $('#divdescut').prop('hidden',false);
+                        $('#textDescuento').text(data.descuento+'% de descuento');
+                    }else{
+                        $('#divalert').prop('hidden',false);
+                        $('#divdescut').prop('hidden',true);
+                    }
+                    if (desctcodigo == ""){
+                        $('#divalert').prop('hidden',true);
+                        $('#divdescut').prop('hidden',true);
+                    }
+                })
+    }
+
+    function GuardarPedido(){
+        let csrftoken = $('#csrf-token').val();
+        
+        let tipdoc = $('#tipdoc').val();
+        let nro = $('#nro').val();
+        let nom = $('#nom').val();
+        let ema = $('#ema').val();
+        let telef = $('#telef').val();
+        let dirdom = $('#dirdom').val();
+        let tipeve = $('#tipeve').val();
+        let direve = $('#direve').val();
+        let delive = $('#delive').val();
+        let desctcodigo = $('#desctcodigo').val();
+        let notas = $('#notas').val();
+
+        $.ajax({
+                type: 'POST',
+                url: "/realizar_pedido2/",
+                data : { 
+                    'tipodocumentoCli':tipdoc,
+                    'nrodocumento':nro,
+                    'nombre':nom,
+                    'email':ema,
+                    'telefono':telef,
+                    'direcciondomicilio':dirdom,
+                    'tipoevento':tipeve,
+                    'direccionevento':direve,
+                    'delivery':delive,
+                    'desctcodigo':desctcodigo,
+                    'notas':notas
+                },
+                headers: {
+                    'X-CSRFToken': csrftoken 
+                },
+                dataType: 'json',
+            }).done(function (data){
+                console.log(data);
+                if (data.status == false){
+                    $('#divalert').prop('hidden',false);
+                }else{
+                    $('#divalert').prop('hidden',true);
+                    window.location.href = "../Realizar_pedido_2";
+                }
+            })
+    }
+    
+    </script>
+{% endblock %}

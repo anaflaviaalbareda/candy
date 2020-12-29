@@ -1,0 +1,202 @@
+{% extends "candymuebles/base.html" %}
+  
+{% block head %}
+    
+<style type="text/css">
+    @media screen and (max-width: 600px) {
+      section.hide {
+        display: none;
+      }
+    }
+
+    @media screen and (min-width: 601px) {
+      section.hide2 {
+        display: none;
+      }
+    }
+</style>
+
+{% endblock %}
+
+{% block ddlcategoria %}
+<div class="dropdown-menu">
+    <a class="text-black dropdown-item display-4"  href="../productos">Todo<br></a>
+    {% for c in categorias %}
+        <a class="text-black dropdown-item display-4"  href="../productos?id={{c.idcategoria}}">{{c.nombre}}<br></a>
+    {% endfor %}        
+</div>
+{% endblock %}
+                        
+
+
+
+
+{% block content %}
+<section class="mbr-section content4 cid-shTeNQVQET" id="content4-h">
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-1">Productos</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">Omnis iusto, cumque id excepturi.</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section content8 cid-shTf9K0ENJ hide" id="content8-i">
+
+    <div class="container">
+        <div class="media-container-row title">
+            <div class="col-12 col-md-12">
+                <div class="mbr-section-btn align-center"><a class="btn btn-success display-4" href="../productos">Todo</a>
+                {% for c in categorias %}
+                <a class="btn btn-success display-4" href="../productos?categoria={{c.idcategoria}}"{{c.idcategoria}}>{{c.nombre}}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="extShop mbr-gallery cid-shVUffMLpf" once="shops" id="extShop1-11">
+
+    <div>
+        <div class="mbr-shop">
+            <!-- Shop Gallery -->
+            <div class="row mbr-shop__row col-md-12">
+                <div class="wrapper-shop-items col-md-12">
+                    <div class="mbr-gallery-row">
+                        <div>
+                            <div class="shop-items">
+
+                                {% for c in productos %}
+                                <div class="mbr-gallery-item" data-tags="Increíble" data-slide-to="0"
+                                    data-seller="false" data-price="33" data-oldprice="66">
+                                    <div class="item_overlay" data-toggle="modal">
+                                        
+                                    </div>
+                                    <div class="galleryItem" data-toggle="modal">
+                                        <div class="style_overlay"></div>
+                                        <div class="img_wraper"><img src="{{c.foto.url}}"></div>
+                                                <!-- <span class="onsale mbr-fonts-style display-7" data-onsale="false" style="display: none;">-50%</span> -->
+                                            {% if c.preventa is True %}
+                                               <span class="onsale mbr-fonts-style display-7" data-onsale="false" style="display: block;">PRVENTA</span>
+                                            {% elif c.promocion is True %}
+                                               <span class="onsale mbr-fonts-style display-7" data-onsale="false" style="display: block;">SALE</span>
+                                            {% endif %}
+                                        <div class="sidebar_wraper">
+                                            <h4 class="item-title mbr-fonts-style mbr-text display-5">{{c.nombre}}
+                                            </h4>
+                                            <div class="price-block">
+                                                <!-- <span class="shop-item-price mbr-fonts-style display-5">${{c.precio}}</span>
+                                                <span class="oldprice mbr-fonts-style display-7" style="display: none;">$66</span> -->
+                                                {% if c.preventa is True %}
+                                                <span class="shop-item-price mbr-fonts-style display-5" >${{c.precio_promocion}}</span>
+                                                {% elif c.promocion is True %}
+                                                   <span class="shop-item-price mbr-fonts-style display-5">${{c.precio_promocion}}</span>
+                                                   <span class="oldprice mbr-fonts-style display-7" >${{c.precio}}</span>
+                                                {% else %}
+                                                   <span class="shop-item-price mbr-fonts-style display-5" >${{c.precio}}</span>
+                                                {% endif %}
+                                            </div>
+                                            <div class="card-description">
+                                                {{c.descripcion | slice:":255" | linebreaksbr }}
+                                                <!-- Zapatos casuales (contáctenos para determinar
+                                                la talla)<br><br>
+                                                <ul>
+                                                    <li>Tejido ligero texturizado</li>
+                                                    <li>Cuello en v redondeado</li>
+                                                    <li>Adornos pom pom</li>
+                                                    <li>Ajuste regular - fiel a su tamaño</li>
+                                                </ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis.
+                                                Suspendisse convallis iaculis tortor, quis mattis lectus rutrum
+                                                a.<br><br>Product code: <strong>385DDF5p</strong> -->
+                                            </div>
+                                            <div class="mbr-section-btn" buttons="0" style="display: none;"><a
+                                                    class="btn btn-black display-7" href="../item/?idpro={{c.idproducto}}">¡Comprar ahora!</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                            <div id="pagination">
+                                    <nav>
+                                       <ul class="pagination">
+           
+                                       </ul>
+                                    </nav>
+                             
+                                </div> 
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div><!-- Lightbox -->
+
+
+            <div class="shopItemsModal_wraper" style="z-index: 2500;">
+                <div class="shopItemsModalBg"></div>
+                <div class="shopItemsModal row">
+                    <div class="col-md-6 image-modal"></div>
+                    <div class="col-md-6 text-modal"></div>
+                    <div class="closeModal">
+                        <div class="close-modal-wrapper"></div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <input type="hidden" value="{{row_count}}" id="row_count">
+            <input type="hidden" value="{{startpage}}" id="startpage">
+            <input type="hidden" value="{{categoria}}" id="categoria">
+        </div>
+    </div>
+
+</section>
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript">    
+    $( document ).ready(function() {
+       var row_count = $('#row_count').val()
+       var startpage = $('#startpage').val()
+       var categoria = $('#categoria').val()
+       ShowPagger(row_count,startpage,categoria);
+    });
+ 
+ 
+    function ShowPagger(row_count, startPage,categoria) {
+       let pages = Math.ceil(row_count / 2)
+       $('#paginationholder').html('');
+       $('#paginationholder').html('<ul id="pagination" class="pagination-sm"></ul>');
+       $('#pagination').twbsPagination({
+          first: "<<",
+          prev: "<",
+          next: ">",
+          last: ">>",
+          startPage: parseInt(startPage),
+          totalPages: pages,
+          visiblePages: 3,
+          initiateStartPageClick: false,
+          onPageClick: function (event, page) {
+            let url ="../productos/?categoria="+ categoria +"&pagina="+ page 
+            console.log("URL:"+url);
+            window.location.href = url;
+          }
+       });
+    }
+ 
+    function buscar(){
+         let nombrepro = $('#nombre_producto').val();
+         let url ="../../Accesories/productos/?pagina=1&Nombre="+nombrepro+"#content11-10";
+         console.log("URL:"+url);
+         window.location.href = url;
+     }
+ </script>
+{% endblock %}
+
+

@@ -1,0 +1,203 @@
+{% extends "candymuebles/base.html" %}
+
+{% block content %}
+
+<section class="carousel slide cid-shT5f0ZJ6D" data-interval="false" id="slider1-0" data-sortbtn="btn-primary">
+    <div class="full-screen"><div class="mbr-slider slide carousel" data-keyboard="false" data-ride="false" data-interval="false" data-pause="false"><ol class="carousel-indicators"><li data-app-prevent-settings="" data-target="#slider1-0" data-slide-to="0"></li><li data-app-prevent-settings="" data-target="#slider1-0" data-slide-to="1"></li><li data-app-prevent-settings="" data-target="#slider1-0" class=" active" data-slide-to="2"></li></ol><div class="carousel-inner" role="listbox"><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(static/assets/candymuebles/images/mbr-1920x1293.jpg);"><div class="container container-slide"><div class="image_wrapper"><div class="mbr-overlay" style="opacity: 0.4; background-color: rgb(0, 121, 206);"></div><img src="../../static/assets/candymuebles/images/mbr-1920x1293.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-center"><h2 class="mbr-fonts-style display-1">Bienvenidos a<br> Candy Muebles</h2><p class="lead mbr-text mbr-fonts-style display-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore magna aliqua.</p><div class="mbr-section-btn" buttons="0"><a class="btn display-4 btn-secondary" href="#m">Link</a> </div></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(static/assets/candymuebles/images/mbr-1-1920x1280.jpg);"><div class="container container-slide"><div class="image_wrapper"><div class="mbr-overlay" style="opacity: 0.4; background-color: rgb(79, 186, 244);"></div><img src="../../static/assets/candymuebles/images/mbr-1-1920x1280.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-center"><h2 class="mbr-fonts-style display-1">Nuevas Sillas disponibles</h2><p class="lead mbr-text mbr-fonts-style display-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore magna aliqua.</p><div class="mbr-section-btn" buttons="0"><a class="btn display-4 btn-secondary" href="#m">LINK</a> </div></div></div></div></div></div><div class="carousel-item slider-fullscreen-image active" data-bg-video-slide="false" style="background-image: url(static/assets/candymuebles/images/mbr-1920x1277.jpg);"><div class="container container-slide"><div class="image_wrapper"><div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(117, 185, 222);"></div><img src="../../static/assets/candymuebles/images/mbr-1920x1277.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-center"><h2 class="mbr-fonts-style display-1">Nueva Atención <br>para empresas&nbsp;</h2><p class="lead mbr-text mbr-fonts-style display-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore magna aliqua.</p><div class="mbr-section-btn" buttons="0"><a class="btn display-4 btn-info" href="#m">LINK</a> </div></div></div></div></div></div></div><a data-app-prevent-settings="" class="carousel-control carousel-control-prev" role="button" data-slide="prev" href="#slider1-0"><span aria-hidden="true" class="mbri-left mbr-iconfont"></span><span class="sr-only">Previous</span></a><a data-app-prevent-settings="" class="carousel-control carousel-control-next" role="button" data-slide="next" href="#slider1-0"><span aria-hidden="true" class="mbri-right mbr-iconfont"></span><span class="sr-only">Next</span></a></div></div>
+</section>
+<section class="extFeatures popup-btn-cards cid-shT8DMZi8k" id="extFeatures50-9" data-sortbtn="btn-primary">
+    <div class="container">
+        <h3 class="mbr-section-subtitle main-subtitle mbr-fonts-style align-center mbr-lighter display-7">Descubre todo lo que tenemos para ofrecerte en Candy Muebles...</h3>
+        <div class="underline align-center pb-3">
+            <div class="line"></div>
+        </div>
+        <h2 class="mbr-section-title main-title mbr-fonts-style align-center display-2"><strong>Nuestros Servicios</strong></h2>
+        <div class="row justify-content-center mt-5">
+            {% for c in categorias %}
+            <div class="col-md-6 content-section col-lg-3 first-row-card">
+                <div class="wrapper card-wrapper">
+                    <div class="mbr-overlay"></div>
+                    <!-- <img src="../../static/assets/candymuebles/images/mbr-3-510x340.jpg" alt="" title=""> -->
+                    <img src={{c.foto.url}} alt="Candy Muebles">
+                    <div class="content-block mbr-white">
+                        <h2 class="mbr-section-title card-title mbr-fonts-style align-center mbr-lighter pb-3 display-5">{{c.nombre}}</h2>
+                        <h3 class="mbr-section-subtitle card-subtitle mbr-fonts-style align-center display-4">
+                            {{c.descripcion}}
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="mbr-section info1 cid-shTc90iSjq" id="info1-d" data-sortbtn="btn-primary">
+    <div class="container">
+        <div class="row justify-content-center content-row">
+            <div class="media-container-column title col-12 col-lg-7 col-md-6">
+                <h3 class="mbr-section-subtitle align-left mbr-light pb-3 mbr-fonts-style display-5">Comieza tu evento ahora con Candy Muebles</h3>
+                <h2 class="align-left mbr-bold mbr-fonts-style display-2">Arrendar Ahora...</h2>
+            </div>
+            <div class="media-container-column col-12 col-lg-3 col-md-4">
+                <div class="mbr-section-btn align-right py-4"><a class="btn btn-info display-4" href="../productos">Ver productos</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="mbr-section content5 cid-si1T2OU0bV mbr-parallax-background" id="content5-16" data-sortbtn="btn-primary">
+    <div class="mbr-overlay" style="opacity: 0.4; background-color: rgb(79, 186, 244);">
+    </div>
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1">Candy Mubles</h2>
+                <div class="mbr-section-btn align-center"><a class="btn btn-info display-4" href="#">Sobre nosotros</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="mbr-section content4 cid-shTa3s1re8" id="content4-a" data-sortbtn="btn-primary">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2"><p><strong>Productos Destacados</strong></p></h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">Lorem ipsum at&nbsp;</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+<section class="mbr-section extFeatures cid-shVTekP2C5" id="extShop9-10" data-sortbtn="btn-primary">
+    <div class="container-fluid">
+        <div class="row justify-content-center pt-5">
+            {% for p in productos %}
+            <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
+                <div class="card-wrapper ">
+                    <div class="card-img">
+                        <!-- <img src="../../static/assets/candymuebles/images/shop4.jpg" alt="#"> -->
+                        <img src={{p.foto.url}} alt="Candy Muebles">
+                    </div>
+                    <div class="card-box">
+                        <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
+                            {{p.nombre}}  
+                        </p>
+                        <div class="prices align-center">
+                            {% if p.promocion is True or p.preventa is True %}
+                                <span class="shop-item-price mbr-fonts-style display-5">${{p.precio_promocion}} </span>
+                                <span class="oldprice mbr-fonts-style display-7" >${{p.precio}}</span>
+                            {% else %}
+                                <span class="shop-item-price mbr-fonts-style display-5">${{p.precio}}</span>
+                            {% endif %}
+                        </div>
+                        <div class="mbr-section-btn align-center pt-3"><a href="../item/?idpro={{p.idproducto}}" class="btn btn-md btn-info display-4">COMPRAR</a></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}    
+        </div>
+    </div>
+</section>
+
+<section class="extForm cid-shTe1JtPsj" id="extForm7-e" data-sortbtn="btn-primary">
+    <div class="container">
+        <div class="row main-row justify-content-center">
+            <div class="col-sm-12 col-lg-8 col-md-6" >
+                <form action="../contacto/" method="POST" class="mbr-form form-with-styler" data-form-title="">
+                    {% csrf_token %}
+                    <div class="row">    
+                    </div>
+                    <div class="dragArea row">
+                        <div class="col-md-12 col-lg-6 form-group" data-for="firstname">
+                            <input type="text" name="firstname" placeholder="Nombre" data-form-field="First Name" required="required" class="form-control display-7" id="firstname-extForm7-e">
+                        </div>
+                        <div class="col-md-12 col-lg-6 form-group" data-for="email">
+                            <input type="email" name="email" placeholder="Email" data-form-field="Email" required="required" class="form-control display-7" id="email-extForm7-e">
+                        </div>
+                        <div data-for="phone" class="col-md-12 col-lg-6 form-group">
+                            <input type="text" name="phone" placeholder="Telefono" data-form-field="Phone" class="form-control display-7" id="phone-extForm7-e">
+                        </div>
+                        
+                        <div data-for="message" class="col-md-12 form-group">
+                            <textarea name="message" placeholder="Mensaje" data-form-field="Message" class="form-control display-7" id="message-extForm7-e"></textarea>
+                        </div>
+                        <div class="col-md-12 input-group-btn"><button type="submit" class="btn btn-form btn-info display-4">Enviar</button></div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-12 col-lg-4 col-md-6 text-block">            
+                <div class="content-panel">
+                    <h2 class="mbr-section-title mbr-fonts-style align-left pb-2 mbr-black display-2">Contacto</h2>
+                    <p class="content-block mbr-fonts-style align-left m-0 mbr-black display-7">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, placeat! Omnis iusto, cumque id excepturi.<br><br>Omnis iusto, cumque id excepturi.<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+   </div>
+</section>
+
+<section class="cid-shTbRuxN3o" id="footer1-c" data-sortbtn="btn-primary">
+    <div class="container">
+        <div class="media-container-row content text-white">
+            <div class="col-12 col-md-3">
+                <div class="media-wrap">
+                    <a href="#/">
+                        <img src="../../static/assets/candymuebles/images/sin-titulo-2-346x142.png" alt="#" title="">
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 mbr-fonts-style display-7">
+                <h5 class="pb-3">Dirección</h5>
+                <p class="mbr-text">
+                    1234 Street Name
+                    <br>City, AA 99999
+                </p>
+            </div>
+            <div class="col-12 col-md-3 mbr-fonts-style display-7">
+                <h5 class="pb-3">
+                    Contacto</h5>
+                <p class="mbr-text">
+                    Email: candymuebles@gmail.com
+                    <br>Phone:&nbsp;<br>+56 9 9999 9999<br></p>
+            </div>
+            <div class="col-12 col-md-3 mbr-fonts-style display-7">
+                <h5 class="pb-3">Politicas y más</h5>
+                <p class="mbr-text">Garantias<br>Servicio de arriendo<br>Devolución</p>
+            </div>
+        </div>
+        <div class="footer-lower">
+            <div class="media-container-row">
+                <div class="col-sm-12">
+                    <hr>
+                </div>
+            </div>
+            <div class="media-container-row mbr-white">
+                <div class="col-sm-6 copyright">
+                    <p class="mbr-text mbr-fonts-style display-7">
+                        © Propiedad de Candy Muebles - Desarrollado por <a href="http://www.sbpymes.com" class="text-info"><strong>SBPYMES</strong></a></p>
+                </div>
+                <div class="col-md-6">
+                    <div class="social-list align-right">
+                        <div class="soc-item">
+                            <a href="https://twitter.com/#" target="_blank">
+                                <span class="mbr-iconfont mbr-iconfont-social socicon-instagram socicon" style="font-size: 35px;"></span>
+                            </a>
+                        </div>
+                        <div class="soc-item">
+                            <a href="https://www.facebook.com/" target="_blank">
+                                <span class="mbr-iconfont mbr-iconfont-social socicon-facebook socicon" style="font-size: 35px;"></span>
+                            </a>
+                        </div>
+                        <div class="soc-item">
+                            <a href="https://www.youtube.com/" target="_blank">
+                                <span class="mbr-iconfont mbr-iconfont-social socicon-whatsapp socicon" style="font-size: 35px;"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

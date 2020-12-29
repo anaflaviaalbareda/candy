@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html >
+<head>
+  {% load static %}
+
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="../../static/assets/candymuebles/images/1-204x113.png" type="image/x-icon">
+  <meta name="description" content="">
+  
+
+  
+  <title>Home</title>
+
+
+  <link rel="stylesheet" href="../../static/assets/candymuebles/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="../../static/assets/candymuebles/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../static/assets/candymuebles/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="../../static/assets/candymuebles/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="../../static/assets/candymuebles/socicon/css/styles.css">
+  <link rel="stylesheet" href="../../static/assets/candymuebles/dropdown/css/style.css">
+  <link rel="stylesheet" href="../../static/assets/candymuebles/tether/tether.min.css">
+  <link rel="stylesheet" href="../../static/assets/candymuebles/theme/css/style.css">
+  <link rel="stylesheet" href="../../static/assets/candymuebles/mobirise/css/mbr-additional.css" type="text/css">
+  
+  <link rel='stylesheet' href='../../static/assets/candymuebles/fullcalendar/css/fullcalendar.css' />
+  <link rel="stylesheet" href="../../static/assets/candymuebles/fullcalendar/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../static/assets/candymuebles/fullcalendar/4.0.0/css/bootstrap.css">
+  <link rel="stylesheet" href="../../static/assets/candymuebles/fullcalendar/css/styles.css">
+  <link rel="stylesheet" href="../../static/assets/candymuebles/gallery/style.css">
+  
+  {% block head %}
+
+  {% endblock %}
+
+</head>
+
+<body>
+  <section class="extMenu10 menu cid-shT5LA1hfN" once="menu" id="extMenu11-2" data-sortbtn="btn-primary">
+    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+        <div class="menu-logo">
+            <div class="navbar-brand">
+                <span class="navbar-logo">
+                    <a href="#">
+                        <img src="../../static/assets/candymuebles/images/1-204x113.png" alt="#" title="" style="height: 5rem;">
+                    </a>
+                </span>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item">
+                    <a class="nav-link link text-black display-7" href="../">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link link dropdown-toggle text-black display-7"  aria-expanded="false" data-toggle="dropdown-submenu">Productos</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item text-black display-7" href="../productos">Todas</a>
+                            {% for c in categorias %}
+                            <a  class="dropdown-item text-black display-7" href="../productos?categoria={{c.idcategoria}}">{{c.nombre}}<br></a>
+                            {% endfor %}
+                        </div>
+                </li>
+                <li class="nav-item"><a class="nav-link link text-black display-7" href="../sobre_nosotros">Sobre Nosotros</a></li>
+                <li class="nav-item"><a class="nav-link link text-black display-7" href="../galeria">Galeria</a></li></ul>
+            <div class="navbar-buttons mbr-section-btn">
+                <a class="btn btn-sm btn-info display-4" href="../index"><span class="p-2 mbr-iconfont mbri-search"></span></a> 
+                <a class="btn btn-sm btn-info display-4" href="../carrito">
+                    <span class="mbri-shopping-cart mbr-iconfont mbr-iconfont-btn">
+                    </span>{% if request.session.Cantidad %}({{request.session.Cantidad}}){% else %}(0){% endif %}
+                </a> 
+                <a class="btn btn-sm btn-danger display-4" href="https://wa.me/56998280660"><span class="socicon socicon-whatsapp mbr-iconfont mbr-iconfont-btn"></span>Contacto</a></div>
+        </div>
+    </nav>
+</section>
+
+{% block content %}
+
+{% endblock %}
+
+
+
+
+  <script src="../../static/assets/candymuebles/web/assets/jquery/jquery.min.js"></script>
+  <script src="../../static/assets/candymuebles/ui/3.2.1/jquery-3.2.1.js"></script>
+  <script src="../../static/assets/candymuebles/popper/popper.min.js"></script>
+  <script src="../../static/assets/candymuebles/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../../static/assets/candymuebles/smoothscroll/smooth-scroll.js"></script>
+  <script src="../../static/assets/candymuebles/dropdown/js/nav-dropdown.js"></script>
+  <script src="../../static/assets/candymuebles/dropdown/js/navbar-dropdown.js"></script>
+  <script src="../../static/assets/candymuebles/touchswipe/jquery.touch-swipe.min.js"></script>
+  <script src="../../static/assets/candymuebles/ytplayer/jquery.mb.ytplayer.min.js"></script>
+  <script src="../../static/assets/candymuebles/vimeoplayer/jquery.mb.vimeo_player.js"></script>
+  <script src="../../static/assets/candymuebles/tether/tether.min.js"></script>
+  <script src="../../static/assets/candymuebles/bootstrapcarouselswipe/bootstrap-carousel-swipe.js"></script>
+  <script src="../../static/assets/candymuebles/mbr-popup-btns/mbr-popup-btns.js"></script>
+  <script src="../../static/assets/candymuebles/parallax/jarallax.min.js"></script>
+  <script src="../../static/assets/candymuebles/theme/js/script.js"></script>
+  <script src="../../static/assets/candymuebles/slidervideo/script.js"></script>
+  <script src="../../static/assets/candymuebles/formoid/formoid.min.js"></script>
+  <script src="../../static/assets/candymuebles/masonry/masonry.pkgd.min.js"></script>
+  <script src="../../static/assets/candymuebles/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="../../static/assets/candymuebles/gallery/player.min.js"></script>
+  <script src="../../static/assets/candymuebles/gallery/script.js"></script>
+  <script src="../../static/assets/candymuebles/mobirise-shop/script.js"></script>
+  <script src="../../static/assets/candymuebles/mbr-testimonials-slider/mbr-testimonials-slider.js"></script>
+  <script src="../../static/assets/candymuebles/pagination/jquery.twbsPagination.js"></script>
+  <script src="../../static/assets/candymuebles/pagination/jquery.twbsPagination.min.js"></script>
+
+  
+  
+  <script src="../../static/assets/candymuebles/fullcalendar/4.0.0/js/popper.min.js"></script>
+  <script src="../../static/assets/candymuebles/fullcalendar/4.0.0/js/bootstrap.min.js"></script>
+  <script src='../../static/assets/candymuebles/fullcalendar/js/moment.min.js'></script>
+  <script src='../../static/assets/candymuebles/fullcalendar/js/fullcalendar.min.js'></script>
+  <script src='../../static/assets/candymuebles/fullcalendar/js/locale/es.js'></script>
+
+
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/cupertino/jquery-ui.css">
+  <script src="../../static/assets/candymuebles/ui/1.12.1/jquery-ui.js"></script>
+  <script type="text/javascript">  
+    $( document ).ready(function() {
+        $.datepicker.regional['es'] = {
+                closeText: '',
+                prevText: '',
+                nextText: '',
+                currentText: 'Hoy',
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Mi&eacute;rcoles', 'Jueves', 'Viernes', 'S&aacute;bado'],
+                dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mi&eacute;', 'Juv', 'Vie', 'S&aacute;b'],
+                dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'S&aacute;'],
+                //weekHeader: 'Nro',
+                dateFormat: "dd/mm/yy",
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                //showWeek: true
+                //showAnim: "fold" 
+            };
+            $.datepicker.setDefaults($.datepicker.regional['es']);
+    })
+    function buscar(){
+        let nombrepro = $('#nombre_pro').val();
+        let url ="../../Accesories/productos/?Nombre="+nombrepro+"#content11-10";
+        console.log("URL:"+url);
+        window.location.href = url;
+    }
+  </script>
+
+  {% block script %}
+    
+  {% endblock %}
+
+
+</body>
+</html>

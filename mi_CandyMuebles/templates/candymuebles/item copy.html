@@ -1,0 +1,408 @@
+
+{% extends "candymuebles/base.html" %}
+
+{% block head %}
+<style type="text/css">
+    @media screen and (max-width: 600px) {
+      section.hide {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 600px) {
+      div.mobil {
+        max-height: 300px;
+      }
+    }
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+<div class="container" style="max-width:100% !important">
+<div class="media-container-row">
+    <div class="col-12 col-md-6">
+        <section class="extGallery testimonials-slider cid-shTg817aK0" data-interval="false" id="extGallery6-k" style="padding-top: 80px">
+
+            <div class="main container">
+
+                <div class="row justify-content-center">
+
+
+                    <div class="second-col col-md-10">
+                        <div class="carousel slide slides" role="listbox" data-pause="true" data-keyboard="false" data-ride="carousel" data-interval="5000">
+                            <ol class="carousel-indicators">
+                                <li class="li1" data-slide-to="0" style="background-image: url({{producto.foto.url}});"></li>
+                                {% if producto.foto2 != "" %}
+                                <li class="li1" data-slide-to="1" style="background-image: url({{producto.foto2.url}});"></li>
+                                {% endif %}
+                                {% if producto.foto3 != "" %}
+                                <li class="li1" data-slide-to="2" style="background-image: url({{producto.foto3.url}});"></li>
+                                {% endif %}
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item ">
+                                    <div class="media-container-row">
+                                        <div class="col-md-12">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-6">
+                                                    <div class="text-box align-left">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="text-box align-right">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="wrap-img " style="background-image: url({{producto.foto.url}});">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if producto.foto2 != "" %}
+                                    <div class="carousel-item ">
+                                        <div class="media-container-row">
+                                            <div class="col-md-12">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-md-6">
+                                                        <div class="text-box align-left">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="text-box align-right">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="wrap-img " style="background-image: url({{producto.foto2.url}});">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if producto.foto3 != "" %}
+                                    <div class="carousel-item ">
+                                        <div class="media-container-row">
+                                            <div class="col-md-12">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-md-6">
+                                                        <div class="text-box align-left">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="text-box align-right">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="wrap-img " style="background-image: url({{producto.foto3.url}});">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-12 col-md-6">
+        <section class="mbr-section content4 cid-shTgzItghx hide" id="content4-m"><br><br>
+        </section>
+        <section class="mbr-section content4 cid-shTgzItghx" id="content4-m" style="padding-top: 0px;">
+
+            <div class="container">
+                <div class="item_overlay" data-toggle="modal">
+
+                </div>
+                <form id="sendsubmit" action="/add_carrito/" method="POST" >
+                    {% csrf_token %}
+                    <div class="media-container-row">
+                        <div class="title col-12 col-md-11">
+                            <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                                {{producto.nombre}}
+                            </h2>
+                            <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+                                {{producto.descripcion}}
+                            </h3>
+                            <br><br>
+                            <!-- <div class="mbr-text mbr-fonts-style display-7">
+                                {{producto.precio}}
+                            </div> -->
+                            <div class="price-block">
+                                {% if producto.promocion is True or producto.preventa is True %}
+                                    <span class="shop-item-price mbr-fonts-style display-5">${{producto.precio_promocion}} </span>
+                                    <span class="oldprice mbr-fonts-style display-7" >${{producto.precio}}</span>
+                                {% else %}
+                                    <span class="shop-item-price mbr-fonts-style display-5">${{producto.precio}}</span>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-12 col-lg-6 form-group" data-for="firstname">
+                                <input type="number" name="cantidad"  id="cantidad" placeholder="Cantidad" data-form-field="First Name" required="required" class="form-control display-7" >
+                            </div>
+                            <div class="col-md-12 col-lg-6 form-group" data-for="email">
+                                <input type="text" name="fecha_ini" autocomplete="off" placeholder="Fecha Inicio" data-form-field="Email" required="required" class="form-control display-7" id="fechaini">
+                            </div>
+                            <div class="col-md-12 col-lg-6 form-group" data-for="email">
+                                <input type="text" name="fecha_fin" autocomplete="off"  placeholder="Fecha Fin" data-form-field="Email" required="required" class="form-control display-7" id="fechafin">
+                            </div>
+                            <div class="col-md-12 input-group-btn">
+                                <button type="button" class="btn btn-form btn-success display-4" onclick="OpenModal()" data-target=".bd-example-modal-xl">Consultar</button>
+                            </div>
+                            <div class="col-md-12 input-group-btn">
+                                <button type="submit" class="btn btn-form btn-info display-4">Agregar al Carrito</button>
+                            </div>
+                            <input type="hidden" name="idpro" id="idproduct" value={{producto.idproducto}}>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+</div>
+
+<section class="mbr-section article content11 cid-shTgvaq0Bt" id="content11-l">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                            ¿Como arrendar un producto?
+                        </h2> <br>
+                <ol>
+                    <li><strong>&nbsp;ELIGE LA CANTIDAD QUE QUIERAS ARRENDAR - </strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</li>
+                    <li><strong>ELIGE UNA FECHA PARA ARRENDAR UN MUEBLE&nbsp;</strong>- &nbsp;Las fechas en gris ya fueron tomadas por lo que debes eligir alguna disponible</li>
+                    <li><strong>AGREGALO A TU CARRITO Y TERMINA TU ARRIENDO</strong>&nbsp;- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Extra large modal -->
+
+
+  <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" id="myModal">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel">MODAL CALENDAR</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+                <div class="row">
+                    <div id="content" class="col-lg-12">
+                        <div id="calendar"></div>
+                        <div id="calendaroculto"></div>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+
+
+</script>
+ <script>
+     function addZero(i) {
+    if (i < 10) {
+        i = '0' + i;
+    }
+    return i;
+    }
+
+    var hoy = new Date();
+    var dd = hoy.getDate();
+    if(dd<10) {
+        dd='0'+dd;
+    }
+
+    if(mm<10) {
+        mm='0'+mm;
+    }
+
+    var mm = hoy.getMonth()+1;
+    var yyyy = hoy.getFullYear();
+
+    dd=addZero(dd);
+    mm=addZero(mm);
+
+    $(document).ready(function() {
+
+    });
+    function FullCalendar(fechaini,fechafin,tipo,fechasdisponibles,fechasbloqueadas){
+        var index = 0;
+        var arrayfechas = [];
+        // console.log(fechaini);
+        // console.log(moment(fechafin).format('YYYY-MM-DDTHH:mm:ss'));
+        $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next',
+                    center: 'title',
+                    right: 'month'
+                },
+                height:600,
+                defaultDate: moment(fechaini),
+                // defaultDate: yyyy+'-'+mm+'-'+dd,
+                buttonIcons: true, // show the prev/next text
+                weekNumbers: false,
+                //editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                displayEventTime: false,
+        		//selectable: true,
+                events: [
+                    {
+                        title: 'Fechas Seleccionadas',
+                        description: 'Seleccionadas',
+                        start: moment(fechaini).format('YYYY-MM-DDTHH:mm:ss'),
+                        end:  moment(fechafin+'T23:59:59').format('YYYY-MM-DDTHH:mm:ss'),
+                        color: '#3A87AD',
+                        textColor: '#ffffff',
+                    }
+                ],
+                dayClick: function (date, jsEvent, view) {
+                    //alert('Has hecho click en: '+ date.format());
+                },
+                eventClick: function (calEvent, jsEvent, view) {
+                        // $('#event-title').text(calEvent.title);
+                        // $('#event-description').html(calEvent.description);
+                        // $('#modal-event').modal();
+                    console.log("eventClick");
+                },
+        		dayRender: function(date, cell){
+                    // //console.log(moment(date).format("YYYY-MM-DD"))
+        			// var fechaspedidas = ['2020-12-24','2020-12-25'];
+                    // var fechasbloqueadas = ['2020-11-30','2020-12-01','2020-12-02','2020-12-03','2020-12-04','2020-12-05','2020-12-06','2020-12-07','2020-12-08'];
+                    
+                    index += 1
+                    if (index == 1 || index == 42 ){
+                        arrayfechas.push(moment(date).format("YYYY-MM-DD"))
+                        if (arrayfechas.length == 2 && tipo == 1){
+                            Disponibilidad(arrayfechas);
+                        }
+                    }
+
+        			if (fechasdisponibles.indexOf(moment(date).format("YYYY-MM-DD"))>-1 ) {
+        			   cell.css("background-color","#d2f0d1");
+        			   //$(cell).addClass('disabled');
+        			}
+        			else if (fechasbloqueadas.indexOf(moment(date).format("YYYY-MM-DD"))>-1 ) {
+        			   cell.css("background-color","#f8a9a5");
+        			   //$(cell).addClass('disabled');
+        			}
+        			else
+        			{
+        				cell.css("background-color","#ccffce");
+                    }
+                    console.log("dayRender");
+                }
+                // viewRender: function(view, element) {
+                //     // console.log("LLEGO AQUI ");
+                //     // console.log(moment(view.start).format("YYYY-MM-DD"));
+                //     // console.log(moment(view.end).add(-1, 'days').format("YYYY-MM-DD"));
+                //     fecha_ini_calend = moment(view.start).format("YYYY-MM-DD");
+                //     fecha_fin_calend = moment(view.end).add(-1, 'days').format("YYYY-MM-DD");
+                    
+                //     if (tipo == 1){
+                //         Disponibilidad(fecha_ini_calend,fecha_fin_calend);
+                //     }
+                //     console.log("viewRender");
+                // }
+            }); 
+
+    
+
+    }
+
+    function OpenModal(){
+        let fechaini = $('#fechaini').val();
+        var  date_fecini = moment(fechaini, 'DD/MM/YYYY').toDate();
+        fechaini = moment(date_fecini).format("YYYY-MM-DD")
+        let fechafin = $('#fechafin').val();
+        var  date_fecfin = moment(fechafin, 'DD/MM/YYYY').toDate();
+        fechafin = moment(date_fecfin).format("YYYY-MM-DD")
+        $('#calendar').fullCalendar('destroy');
+        setTimeout(function(){
+            FullCalendar(fechaini,fechafin,1,[],[]);
+        }, 500);
+        $("#myModal").modal('toggle');
+    }
+
+    $('#my-prev-button').click(function() {
+        $('#calendar').fullCalendar('prev');
+        alert("HOLA")
+    });
+
+    function Disponibilidad(arrayfechas){
+        let fecha_ini_calend = arrayfechas[0];
+        let fecha_fin_calend = arrayfechas[1];
+        let idproduct = $('#idproduct').val();
+        let cantidad = $('#cantidad').val();
+        let fechaini = $('#fechaini').val();
+        let fechafin = $('#fechafin').val();
+        let rpt = validaCampo(cantidad,fechaini,fechafin);
+        if (rpt== true){
+            $.ajax({
+                    type: 'GET',
+                    url: "/consultaDisponibilidad/",
+                    data : {
+                        'idproduct':idproduct,
+                        'cantidad':cantidad,
+                        'fechaini':fechaini,
+                        'fechafin':fechafin,
+                        'fecha_ini_calend':fecha_ini_calend,
+                        'fecha_fin_calend':fecha_fin_calend
+                    },
+                    dataType: 'json',
+                }).done(function (data){
+                    // console.log(data);
+                    $('#calendar').fullCalendar('destroy');
+                    var  dateini = moment(fechaini, 'DD/MM/YYYY').toDate();
+                    fechaini = moment(dateini).format("YYYY-MM-DD")
+                    var  datefin = moment(fechafin, 'DD/MM/YYYY').toDate();
+                    fechafin = moment(datefin).format("YYYY-MM-DD")
+                    fechasdisponibles=[];
+                    fechasbloqueadas=[];
+                    data.forEach(element => {
+                        if (element[3] > 0){
+                            fechasdisponibles.push(element[0])
+                        }else{
+                            fechasbloqueadas.push(element[0])
+                        }
+                    });
+                    FullCalendar(fechaini,fechafin,2,fechasdisponibles,fechasbloqueadas);
+                })
+        }
+    }
+
+    function validaCampo(cantidad,fechaini,fechafin){
+        let rpt = true;
+        if (cantidad == ""){
+            rpt = false;
+        }else if (fechaini == ""){
+            rpt = false;
+        }else if (fechafin == ""){
+            rpt = false;
+        }
+        return rpt;
+    }
+
+
+    $( function() {
+    //    //console.log("heinrrich")
+       $("#fechaini" ).datepicker();
+       $("#fechafin" ).datepicker();
+    });
+  </script>
+{% endblock %}
